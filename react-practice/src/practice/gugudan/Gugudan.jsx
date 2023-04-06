@@ -1,13 +1,14 @@
 const React = require('react');
+const { useState, useRef } = React;
 const GuGudan = () =>{
-    const [first,setFirst] = React.useState(Math.ceil(Math.random() * 9))
-    const [second,setSecond] = React.useState(Math.ceil(Math.random() * 9))
-    const [value,setValue] = React.useState('');
-    const [result,setResult] = React.useState('');
-    const [cntSuccess,setCntSuccess] = React.useState(0);
-    const [cntFail,setCntFail] = React.useState(0);
-    const [resultVisible , setResultVisible] = React.useState(false);
-    const inputRef = React.useRef(null);
+    const [first,setFirst] = useState(Math.ceil(Math.random() * 9))
+    const [second,setSecond] = useState(Math.ceil(Math.random() * 9))
+    const [value,setValue] = useState('');
+    const [result,setResult] = useState('');
+    const [cntSuccess,setCntSuccess] = useState(0);
+    const [cntFail,setCntFail] = useState(0);
+    const [resultVisible , setResultVisible] = useState(false);
+    const inputRef = useRef(null);
 
     const onSubmit = (e) =>{
         e.preventDefault();
