@@ -26,11 +26,11 @@
                             setSecond(Math.ceil(Math.random() * 9));
                             setValue('');
                             setResult('Submit : ' + value +  ' ==> Success');
-                            setCntSuccess(cntSuccess +1);
+                            setCntSuccess((prevCntSuccess) => prevCntSuccess +1);
                         }else{
                             setValue('');
                             setResult('Submit : ' + value +  ' ==> Fail');
-                            setCntFail(cntFail + 1);
+                            setCntFail((prevCntFail) =>  prevCntFail+ 1);
                         }
                         inputRef.current.focus();
                         setResultVisible(true);
