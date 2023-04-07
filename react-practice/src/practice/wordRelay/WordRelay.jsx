@@ -1,5 +1,5 @@
 const React = require('react');
-const { Component, useState, useRef } = React;
+const { useState, useRef } = React;
 
 const WordRelay = () =>  {
     const [word, setWord] = useState('시작');
