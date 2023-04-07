@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
   name : 'work-relay-setting',
@@ -32,17 +33,28 @@ module.exports = {
               '@babel/preset-react' ,
               
             ],
-            plugins : ['@babel/plugin-proposal-class-properties']
+            plugins : [
+              '@babel/plugin-proposal-class-properties',
+              'react-refresh/babel'
+            ]
             
         },
     }],
   },
   plugins : [
     new webpack.LoaderOptionsPlugin({debug : true}),
+    new RefreshWebpackPlugin()
   ],
   //출력
   output : {
     path : path.join(__dirname,'dist'),
-    filename : 'app.js'
+    filename : 'app.js',
+    publicPath : '/dist'
+  },
+
+  devServer : {
+    devMiddleware : {publicPath : '/dist'},
+    static : { directory : path.resolve(__dirname,'src')},
+    hot : true,
   },
 };

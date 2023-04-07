@@ -2,7 +2,8 @@ const React = require('react');
 const { Component, useState, useRef } = React;
 
 const WordRelay = () =>  {
-    const [word, setWord] = useState('정의호');
+    const [word, setWord] = useState('시작');
+    const [result , setResult] = useState(''); 
     const [value , setValue] = useState('');
     
     const inputRef = useRef(null);
@@ -11,7 +12,11 @@ const WordRelay = () =>  {
         e.preventDefault();
 
         if(word.slice(-1) === value.slice(0,1)){
+            setResult('OK');
             setWord(value);
+        }
+        else {
+            setResult('No');
         }
 
         setValue('');
@@ -29,18 +34,11 @@ const WordRelay = () =>  {
                 <input ref = {inputRef} type="text" value ={value} onChange={onChange}/>
                 <button> submit </button>
             </form>
-
+            <div>{result}</div>
+    
             
         </>
     )
 };
-
-// class WordRelay extends Component{
-    
-
-//     render(){
-//         return <h1>Hi {this.state.text}</h1>
-//     }
-// }
 
 module.exports = WordRelay;
