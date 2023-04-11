@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Try from './Try';
+const length = 3;
 
 function getNumber() {
     return Math.ceil(Math.ceil(Math.random() * 9))
 }
 function getUniqueNumberList() {
-    const length = 3;
     const list = new Set();
     while (length > list.size) {
         list.add(getNumber());
@@ -24,17 +24,24 @@ class NumberBaseBall extends Component {
 
     onSubmitForm = (e) => {
         e.preventDefault();
+        console.log(length);
+        if(!this.state.value || length < 3) {
+            alert('값을 입력해주세요');
+            return;
+        }
         if (this.state.value === this.state.answer.join('')) {
             this.setState({
+                value : '',
                 result: '정답',
-                //push를 쓰면 render가 일어나지 않아서 새롭게  배열에 넣어줘야함
-                tries: [...this.state.tries, { try: this.state.value, result: '정답!' }]
+                tries: []                
             });
+            alert('정답입니다.');
         }
         else {
-            const answerArray = this.state.value.split('').map((v) => parseInt(v));
+            const valueArray = this.state.value.split('').map((v) => parseInt(v));
             let strike = 0;
             let ball = 0;
+            let out = 0;
             if (this.state.tries.length >= 9) {
                 this.setState({
                     result: `실패!  정답 : ${this.state.answer.join(',')}`,
@@ -47,19 +54,24 @@ class NumberBaseBall extends Component {
                 });
             } else {
                 console.log('오답');
-                answerArray.forEach((value, index) => {
-                    console.log(this.state.answer[index] + ' - ' + answerArray[index]); 
+                valueArray.forEach((value, index) => {
+                    console.log(this.state.answer[index] + ' - ' + value); 
                     //strike
-                    if (answerArray[index] === this.state.answer[index]) {
+                    if (this.state.answer[index] === value) {
                         strike += 1;
                     }
                     //ball
-                    // else(){
-
-                    // }
+                    else if(this.state.answer.includes(value)){
+                        ball += 1;
+                    }
+                    else{
+                        out += 1;
+                    }
                 })
                 this.setState({
-                    tries: [...this.state.tries, { try: this.state.value , result: `${strike}S ${ball}B` }],
+                    //push를 쓰면 render가 일어나지 않아서 새롭게  배열에 넣어줘야함
+                    tries: [...this.state.tries, { try: this.state.value , result: `${strike}S ${ball}B ${out}O` }],
+                    value : '',
                 })
 
                 // this.setState({
