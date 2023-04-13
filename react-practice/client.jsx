@@ -1,4 +1,4 @@
-import Indexaa from './src/practice/NumberBaseBall/NumberBaseBall';
+import Indexa from './src/practice/NumberBaseBall/NumberBaseBall';
 
 const React = require('react');
 //const ReactDOM = require('react-dom');
@@ -15,4 +15,4 @@ const ReactDOM = require('react-dom/client');
 //ReactDOM.render(<WordRelay/>, document.querySelector('#root'));
 
 
-ReactDOM.createRoot(document.querySelector('#root')).render(<Indexaa/>);
+ReactDOM.createRoot(document.querySelector('#root')).render(<Indexa/>);
