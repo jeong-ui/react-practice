@@ -15,13 +15,18 @@ function getUniqueNumberList() {
         list.add(getNumber());
     }
     //return [...list].sort((a, b) => a - b);
+    console.log(...list);
     return [...list];
 }
 
 const NumberBaseBall = () => {
     const [result, setResult] = useState('시작');
     const [value, setValue] = useState('');
-    const [answer, setAnswer] = useState(getUniqueNumberList());
+    
+    //const [answer, setAnswer] = useState(getUniqueNumberList()); 
+    //초기값 설정시 state에 함수 호출을 넣어서 렌더링 할때마다 반복적인 쓸데없는 함수 호출이 일어난다,
+    //함수 호출이 아닌 함수 자체를 넣어서 렌더 될때마다 호출이 아닌 return값 자체를 넣음
+    const [answer, setAnswer] = useState(getUniqueNumberList); // lazy init
     const [tries, setTries] = useState([]);
 
     const onChangeInput = (e) => {
@@ -64,7 +69,9 @@ const NumberBaseBall = () => {
                         out += 1;
                     }
                 })
-                setTries([...tries, { try: value, result: `${strike}S ${ball}B ${out}O` }]);
+                setTries((prevTries) =>{
+                    return [...prevTries, { try: value, result: `${strike}S ${ball}B ${out}O` }];
+                });
                 setValue('');
             }
         }
