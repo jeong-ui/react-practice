@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component , createRef} from 'react';
 import Try from './Try_class';
 const length = 3;
 
@@ -37,6 +37,10 @@ class NumberBaseBall_class extends Component {
                 tries: []                
             });
             alert('정답입니다.');
+
+            //this.input.focus();
+            this.input.current.focus();
+
         }
         else {
             const valueArray = value.split('').map((v) => parseInt(v));
@@ -81,13 +85,20 @@ class NumberBaseBall_class extends Component {
         this.setState({ value: e.target.value })
     }
 
+    // input;
+    // onInputRef = (c) =>{ this.input = c;        
+    // }
+
+    //createRef를 통하여  hooks 와 같은 방식으로 호출 
+    input = createRef();
+
     render() {
         const {result ,value ,tries } = this.state;
         return (
             <>
                 <h1>{result}</h1>
                 <form onSubmit={this.onSubmitForm}>
-                    <input maxLength={3} value={value} onChange={this.onChangeInput}></input>
+                    <input ref={this.input} maxLength={3} value={value} onChange={this.onChangeInput}></input>
                     <button>submit</button>
                 </form>
                 <div> 시도 : {tries.length}</div>
