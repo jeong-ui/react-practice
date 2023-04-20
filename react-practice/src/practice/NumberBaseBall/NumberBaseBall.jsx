@@ -10,6 +10,8 @@ function getNumber() {
     return Math.ceil(Math.ceil(Math.random() * 9))
 }
 function getUniqueNumberList() {
+
+    console.log('getUniqueNumberList')
     const list = new Set();
     while (length > list.size) {
         list.add(getNumber());

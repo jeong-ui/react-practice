@@ -1,5 +1,6 @@
-import Indexa from './src/practice/NumberBaseBall/NumberBaseBall';
-//import Indexa from './src/practice/NumberBaseBall/NumberBaseBall_class';
+//import Index from './src/practice/NumberBaseBall/NumberBaseBall';
+//import Index from './src/practice/NumberBaseBall/NumberBaseBall_class';
+import Index from './src/practice/ResponseCheck/ResponseCheck';
 
 const React = require('react');
 //const ReactDOM = require('react-dom');
@@ -19,6 +20,6 @@ const ReactDOM = require('react-dom/client');
 ReactDOM.createRoot(document.querySelector('#root')).render(
 
     //<React.StrictMode>
-        <Indexa/>
+        <Index/>
     //</React.StrictMode>
 );
