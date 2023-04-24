@@ -1,0 +1,16 @@
+#computer{
+    width: 142px;
+    height: 200px;
+    background: url('http://en.pimg.jp/023/182/267/1/23182267.jpg'); 
+ }
+ #computer.rock{
+    background-position: 0 0;
+ }
+ #computer.scissor{
+    background-position: -142px 0;
+ }
+ #computer.paper{    
+    background-position: -284px 0;
+ }
+
+/* `url(~~~~) ${imgCoord} 0` */

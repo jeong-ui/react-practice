@@ -1,6 +1,7 @@
 //import Index from './src/practice/NumberBaseBall/NumberBaseBall';
 //import Index from './src/practice/NumberBaseBall/NumberBaseBall_class';
-import Index from './src/practice/ResponseCheck/ResponseCheck';
+//import Index from './src/practice/ResponseCheck/ResponseCheck';
+import Index from './src/practice/RSP/RSP_class';
 
 const React = require('react');
 //const ReactDOM = require('react-dom');
