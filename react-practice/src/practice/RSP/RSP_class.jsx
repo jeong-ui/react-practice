@@ -1,4 +1,4 @@
-import React , {Component} from 'react';
+import React , {Component } from 'react';
 import './RSP.css';
 
 const scores = {
@@ -34,7 +34,9 @@ class RSP_class extends Component{
     };
 
     
-    onClickBtn = (e)=>{        
+    onClickBtn = (e)=> () =>  {        
+        console.log('btn click')
+        this.isDisabled = true;
         clearInterval(this.interval);
         const { imgCoord } = this.state
         const myChoice = scores[e];
@@ -63,11 +65,15 @@ class RSP_class extends Component{
                 result : 'Error'
             })
         }     
+        setTimeout(()=> {
+            this.interval = setInterval( this.changeHand,100)   
+            this.isDisabled = false;
+        },1000)
         
-        this.interval = setInterval( this.changeHand,1000)   
     }
 
     changeHand = () => {
+        console.log(this.interval)
         const {imgCoord} = this.state;
         //주먹가위보 순서대로 interval 하여 이미지 좌표값 변경            
         if(imgCoord === 'rock'){
@@ -89,10 +95,8 @@ class RSP_class extends Component{
 
     interval;
     //component 첫 render 될때  => 비동기 요청 
-    componentDidMount(){
-        console.log('componentDidMount');
-        
-        this.interval = setInterval( this.changeHand,1000)
+    componentDidMount(){        
+        this.interval = setInterval( this.changeHand, 100)
     }
     // 리렌더링 후 실행
     componentDidUpdate(){
@@ -101,19 +105,19 @@ class RSP_class extends Component{
 
     //component 제거되기 직전   => 비동기 요청 정리
     componentWillUnmount(){
-        console.log('componentWillUnmount')
         clearInterval(this.interval);
     }
 
+    isDisabled = false;
     render(){
         const {result , score , imgCoord } = this.state;    
         return (
             <>
                 <div id="computer" className={imgCoord}></div>
                 <div>
-                    <button id="scissor" className='btn' onClick={() => this.onClickBtn('scissor')}>가위</button>
-                    <button id="rock" className='btn' onClick={() => this.onClickBtn('rock')}>바위</button>
-                    <button id="paper" className='btn' onClick={() => this.onClickBtn('paper')}>보</button>
+                    <button disabled={this.isDisabled} id="scissor" className='btn' onClick={this.onClickBtn('scissor')}>가위</button>
+                    <button disabled={this.isDisabled} id="rock" className='btn' onClick={this.onClickBtn('rock')}>바위</button>
+                    <button disabled={this.isDisabled} id="paper" className='btn' onClick={this.onClickBtn('paper')}>보</button>
                 </div>
                     <button onClick={ ()=>clearInterval(this.interval)} > 정지! </button>
                 <div>{result}</div>
